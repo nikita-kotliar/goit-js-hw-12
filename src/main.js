@@ -93,7 +93,7 @@ form.addEventListener('submit', async event => {
     );
 
     gallery.insertAdjacentHTML('beforeend', imgs);
-    if (data.hits.length > perPage) {
+    if (data.hits.length >= perPage) {
       loadMoreBtn.style.display = 'block';
     }
     modal.refresh();
@@ -120,7 +120,10 @@ loadMoreBtn.addEventListener('click', async () => {
     loader.style.display = 'none';
     const data = response.data;
 
-    if (data.totalHits <= perPage * page) {
+    const fghj = perPage * page - 40;
+    const dfgh = data.totalHits - fghj;
+
+    if (dfgh  <= 0) {
       loadMoreBtn.style.display = 'none'; 
       throw iziToast.show({
         message: "We're sorry, but you've reached the end of search results.",
@@ -158,6 +161,9 @@ loadMoreBtn.addEventListener('click', async () => {
     scrollToNextGroup();
 
     modal.refresh();
+    if (dfgh <= 40) {
+      loadMoreBtn.style.display = 'none';
+    }
   } catch (error) {
     loader.style.display = 'none';
     iziToast.error({
