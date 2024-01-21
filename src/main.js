@@ -93,7 +93,7 @@ form.addEventListener('submit', async event => {
     );
 
     gallery.insertAdjacentHTML('beforeend', imgs);
-    if (data.hits.length >= perPage) {
+    if (data.hits.length > perPage) {
       loadMoreBtn.style.display = 'block';
     }
     modal.refresh();
