@@ -163,6 +163,13 @@ loadMoreBtn.addEventListener('click', async () => {
     modal.refresh();
     if (dfgh <= 40) {
       loadMoreBtn.style.display = 'none';
+      throw iziToast.show({
+        message: "We're sorry, but you've reached the end of search results.",
+        theme: 'dark',
+        backgroundColor: '#6C8CFF',
+        titleColor: 'white',
+        position: 'topRight',
+      });
     }
   } catch (error) {
     loader.style.display = 'none';
